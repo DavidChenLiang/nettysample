@@ -9,7 +9,8 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.buffer.ByteBuf;
 
 public class TimeServerHandler extends ChannelInboundHandlerAdapter{
-    @Override
+    
+	@Override
     public void channelActive(final ChannelHandlerContext ctx){
     	final ByteBuf time = ctx.alloc().buffer(4); 
         time.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
@@ -24,6 +25,13 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter{
     	});
     }
     
+	/*
+    @Override
+    public void channelActive(final ChannelHandlerContext ctx){
+    	ChannelFuture f = ctx.writeAndFlush(new UnixTime());
+    	f.addListener(ChannelFutureListener.CLOSE);
+    }
+    */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause){
     	cause.printStackTrace();

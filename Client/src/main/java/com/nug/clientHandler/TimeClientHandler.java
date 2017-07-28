@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
+	/*
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg){
 		ByteBuf m = (ByteBuf) msg; // (1)
@@ -19,6 +20,14 @@ public class TimeClientHandler extends ChannelInboundHandlerAdapter {
         } finally {
             m.release();
         }
+	}
+	*/
+	
+	@Override
+	public void channelRead(ChannelHandlerContext ctx, Object msg){
+		UnixTime m = (UnixTime)msg;
+		System.out.println(m);
+		ctx.close();
 	}
 	
 	@Override
