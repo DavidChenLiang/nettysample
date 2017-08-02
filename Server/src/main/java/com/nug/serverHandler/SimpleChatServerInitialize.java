@@ -1,4 +1,4 @@
-package chat;
+package com.nug.serverHandler;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -8,8 +8,8 @@ import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
-public class SimpleChatClientInitializer extends ChannelInitializer<SocketChannel>{
-   
+public class SimpleChatServerInitialize extends ChannelInitializer<SocketChannel>{
+
 	@Override
 	protected void initChannel(SocketChannel ch) throws Exception {
 		// TODO Auto-generated method stub
@@ -17,7 +17,8 @@ public class SimpleChatClientInitializer extends ChannelInitializer<SocketChanne
 		pipeline.addLast("framer", new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
 		pipeline.addLast("decoder", new StringDecoder());
 		pipeline.addLast("encoder", new StringEncoder());
-		pipeline.addLast("handler", new SimpleChatClientHandler());
+		pipeline.addLast("handler", new SimpleChatServerHandler());
+		System.out.println("SimpleChatClient:" + ch.remoteAddress() + " connected.");
 	}
 
 }

@@ -1,4 +1,4 @@
-package chat;
+package com.nug.serverHandler;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
